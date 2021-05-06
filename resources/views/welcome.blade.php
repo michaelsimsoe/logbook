@@ -9,11 +9,11 @@
 
     </head>
     <body class="bg-gray-50">
-        <header class="flex flex-row justify-between">
+        <header class="flex flex-row justify-between ">
             <h1><a href="/">Logbok</a></h1>
             <a href="#">Log ut</a>
         </header>
-        <main class="grid grid-cols-3">
+        <main class="grid grid-cols-3 max-w-7xl">
             <section class="col-span-2">
                 <h2>Nytt innslag</h2>
                 <form action="" class="flex flex-col">

@@ -569,6 +569,18 @@ video {
 .grid {
 	display: grid;
 }
+.max-w-3xl {
+	max-width: 48rem;
+}
+.max-w-5xl {
+	max-width: 64rem;
+}
+.max-w-6xl {
+	max-width: 72rem;
+}
+.max-w-7xl {
+	max-width: 80rem;
+}
 .grid-cols-2 {
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -581,10 +593,24 @@ video {
 .flex-row {
 	flex-direction: row;
 }
+.content-center {
+	align-content: center;
+}
 .justify-between {
 	justify-content: space-between;
+}
+.justify-center {
+	justify-content: center;
 }
 .bg-gray-50 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+}
+.px-4 {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+.px-6 {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 }
