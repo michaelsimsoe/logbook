@@ -1,3 +1,5 @@
 {
-    "files.autoGuessEncoding": true
+    "files.autoGuessEncoding": true,
+    "editor.tabCompletion": "onlySnippets",
+    "php-cs-fixer.onsave": true
 }

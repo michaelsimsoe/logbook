@@ -4,59 +4,75 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <title>Logbok</title>
+        <title>Loggbok</title>
 
 
     </head>
-    <body class="bg-gray-50">
-        <header class="flex flex-row justify-between ">
-            <h1><a href="/">Logbok</a></h1>
+    <body class="bg-gray-50 h-screen w-screen">
+
+        <header class="flex flex-row justify-between p-4 mb-4 bg-gray-200">
+            <h1 class=""><a href="/">Loggbok</a></h1>
             <a href="#">Log ut</a>
         </header>
-        <main class="grid grid-cols-3 max-w-7xl">
-            <section class="col-span-2">
-                <h2>Nytt innslag</h2>
+
+        <main class="grid grid-cols-3 md:max-w-xl lg:max-w-7xl mx-auto">
+
+            <section class="col-span-2 border-2 p-4 rounded-sm">
+                <h2 class="text-xl">Nytt notat</h2>
                 <form action="" class="flex flex-col">
-                    <div>
+                    <div class="flex flex-col mt-2">
                         <label for="title">Tittel</label>
                         <input type="text" name="title" id="title">
                     </div>
-                     <div>
+                     <div class="flex flex-col" mt-2>
                         <label for="body">Hva vil du si?</label>
                         <textarea name="body" id="body" cols="30" rows="10"></textarea>
                     </div>
-                    <div>
+                    <div class="flex flex-col mt-2">
                         <label for="tags">Tags:</label>
                         <input type="text" name="tags" id="tags">
                     </div>
-                    <div>
+                    <div class="flex flex-col mt-2">
                         <p for="type">Type</p>
-                        <label for="type-learn">Læring</label>
-                        <input type="radio" name="type" id="type-learn" value="learn">
-                        <label for="type-task">Oppgave</label>
-                        <input type="radio" name="type" id="type-task" value="task">
+                        <div class="flex">
+                            <input type="radio" name="type" id="type-learn" value="learn" class="mr-2 mt-1">
+                            <label for="type-learn">Læring</label>
+                        </div>
+                        <div class="flex align-baseline">
+                            <input type="radio" name="type" id="type-task" value="task" class="mr-2 mt-1">
+                            <label for="type-task">Oppgave</label>
+                        </div>
                     </div>
-                    <button type="submit">Legg til</button>
+                    <button type="submit" class="bg-green-400 rounded p-2 mt-6">Legg til</button>
                 </form>
             </section>
-            <aside class="col-span-1">
-                <h3>Dagen idag</h3>
-                <p>7. mai 2021</p>
-                <a href="/">Alt</a>
-                <a href="/">Kun læring</a>
-                <a href="/">Kun oppgaver</a>
-                <article>
+
+            <aside class="col-span-1 border-2 p-4 ml-2 rounded-sm">
+                <header>
+                    <h3 class="text-lg">Dagen idag</h3>
+                    <p>7. mai 2021</p>
+                </header>
+
+                <div class="flex justify-between">
+                    <a href="/">Alt</a>
+                    <a href="/">Kun læring</a>
+                    <a href="/">Kun oppgaver</a>
+                </div>
+
+                <article class="mt-4 p2">
                     <h4>Oppgave: Migrere noe</h4>
                     <small>09:30</small>
                     <p>Noe ble migrert.. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime esse similique modi perspiciatis recusandae aliquid vitae accusantium odit, dignissimos sapiente eius expedita! Dolore quaerat consequuntur magnam quod mollitia, laborum deleniti?</p>
                     <small>TAGS: db, sql, devops</small>
                 </article>
-                <article>
+
+                <article class="mt-4 p2">
                     <h4>Læring: Hvor er en ting i legacykoden</h4>
                     <small>10.00</small>
                     <p>Dette lørte jeg om dette greierne her. Her er noen screenshots og her er noen relevante lenker.</p>
                     <small>TAGS: db, sql, devops</small>
                 </article>
+
             </aside>
         </main>
     </body>
