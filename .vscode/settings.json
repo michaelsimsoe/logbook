@@ -1,5 +1,6 @@
 {
     "files.autoGuessEncoding": true,
     "editor.tabCompletion": "onlySnippets",
-    "php-cs-fixer.onsave": true
+    "php-cs-fixer.onsave": true,
+    "editor.fontSize": 14
 }

@@ -9,17 +9,27 @@
 
     </head>
     <body class="bg-gray-50 h-screen w-screen">
-
-        <header class="flex flex-row justify-between p-4 mb-4 bg-gray-200">
+        @include('layouts.navigation')
+        <header class="flex flex-row justify-between p-4 mb-4 bg-gray-200 shadow-md ">
             <h1 class=""><a href="/">Loggbok</a></h1>
-            <a href="#">Log ut</a>
+            <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log out') }}
+                            </x-dropdown-link>
+                        </form>
         </header>
 
         <main class="grid grid-cols-3 md:max-w-xl lg:max-w-7xl mx-auto">
 
-            <section class="col-span-2 border-2 p-4 rounded-sm">
+            <section class="col-span-2 shadow-md p-4 rounded-sm">
                 <h2 class="text-xl">Nytt notat</h2>
-                <form action="" class="flex flex-col">
+
+                <form method="POST" action="/notes" class="flex flex-col">
+                    @csrf
                     <div class="flex flex-col mt-2">
                         <label for="title">Tittel</label>
                         <input type="text" name="title" id="title">
@@ -43,11 +53,11 @@
                             <label for="type-task">Oppgave</label>
                         </div>
                     </div>
-                    <button type="submit" class="bg-green-400 rounded p-2 mt-6">Legg til</button>
+                    <button type="submit" class="bg-green-400 rounded p-2 mt-6 shadow">Legg til</button>
                 </form>
             </section>
 
-            <aside class="col-span-1 border-2 p-4 ml-2 rounded-sm">
+            <aside class="col-span-1 shadow-md p-4 ml-2 rounded-sm">
                 <header>
                     <h3 class="text-lg">Dagen idag</h3>
                     <p>7. mai 2021</p>

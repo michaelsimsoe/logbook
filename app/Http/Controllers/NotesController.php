@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use Illuminate\Http\Request;
 
-class NoteController extends Controller
+class NotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,15 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'type' => 'required',
+            'tags' => 'nullable'
+            ]);
+
+        Note::create($attributes);
+        return back();
     }
 
     /**
