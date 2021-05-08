@@ -14,7 +14,8 @@ class NotesController extends Controller
      */
     public function index()
     {
-        //
+        $notes = auth()->user()->notes;
+        return view('notes', ['notes' => $notes]);
     }
 
     /**

@@ -16,16 +16,12 @@ use App\Http\Controllers\NotesController;
 
 Route::get('/', function () {
     $today = (new DateTime)->format('Y-m-d');
-    
     $notes = auth()->user()->notes->where('created_at', '>', $today);
 
-    return view('welcome', ['notes' => $notes]);
-})->middleware(['auth']);
+    return view('dashboard', ['notes' => $notes]);
+})->middleware(['auth'])->name('home');;
 
 Route::post('/notes', [NotesController::class, 'store'])->middleware(['auth']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/notes', [NotesController::class, 'index'])->middleware(['auth'])->name('notes');
 
 require __DIR__.'/auth.php';
