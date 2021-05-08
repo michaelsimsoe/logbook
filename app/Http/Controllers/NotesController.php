@@ -39,9 +39,11 @@ class NotesController extends Controller
             'title' => 'required',
             'body' => 'required',
             'type' => 'required',
-            'tags' => 'nullable'
+            'tags' => 'nullable',
             ]);
-
+    
+        $attributes['user_id'] = auth()->id();
+        
         Note::create($attributes);
         return back();
     }

@@ -13,14 +13,15 @@
         <header class="flex flex-row justify-between p-4 mb-4 bg-gray-200 shadow-md ">
             <h1 class=""><a href="/">Loggbok</a></h1>
             <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+                @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log out') }}
-                            </x-dropdown-link>
-                        </form>
+                <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                    {{ __('Log out') }}
+                </x-dropdown-link>
+
+            </form>
         </header>
 
         <main class="grid grid-cols-3 md:max-w-xl lg:max-w-7xl mx-auto">
@@ -45,7 +46,7 @@
                     <div class="flex flex-col mt-2">
                         <p for="type">Type</p>
                         <div class="flex">
-                            <input type="radio" name="type" id="type-learn" value="learn" class="mr-2 mt-1">
+                            <input checked type="radio" name="type" id="type-learn" value="learn" class="mr-2 mt-1">
                             <label for="type-learn">Læring</label>
                         </div>
                         <div class="flex align-baseline">
@@ -60,7 +61,7 @@
             <aside class="col-span-1 shadow-md p-4 ml-2 rounded-sm">
                 <header>
                     <h3 class="text-lg">Dagen idag</h3>
-                    <p>7. mai 2021</p>
+                    <p>{{ date('d-m-Y') }}</p>
                 </header>
 
                 <div class="flex justify-between">
@@ -69,19 +70,14 @@
                     <a href="/">Kun oppgaver</a>
                 </div>
 
-                <article class="mt-4 p2">
-                    <h4>Oppgave: Migrere noe</h4>
-                    <small>09:30</small>
-                    <p>Noe ble migrert.. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime esse similique modi perspiciatis recusandae aliquid vitae accusantium odit, dignissimos sapiente eius expedita! Dolore quaerat consequuntur magnam quod mollitia, laborum deleniti?</p>
-                    <small>TAGS: db, sql, devops</small>
-                </article>
-
-                <article class="mt-4 p2">
-                    <h4>Læring: Hvor er en ting i legacykoden</h4>
-                    <small>10.00</small>
-                    <p>Dette lørte jeg om dette greierne her. Her er noen screenshots og her er noen relevante lenker.</p>
-                    <small>TAGS: db, sql, devops</small>
-                </article>
+                @foreach($notes as $note)
+                    <article class="mt-4 p2">
+                        <h4>{{ $note->type}}: {{ $note->title}}</h4>
+                        <small>{{ $note->created_at->diffForHumans() }}</small>
+                        <p>{{ $note->body }}</p>
+                        <small>TAGS: {{ $note->tags }}</small>
+                    </article>
+                @endforeach
 
             </aside>
         </main>

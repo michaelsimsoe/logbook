@@ -15,7 +15,11 @@ use App\Http\Controllers\NotesController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $today = (new DateTime)->format('Y-m-d');
+    
+    $notes = auth()->user()->notes->where('created_at', '>', $today);
+
+    return view('welcome', ['notes' => $notes]);
 })->middleware(['auth']);
 
 Route::post('/notes', [NotesController::class, 'store'])->middleware(['auth']);
