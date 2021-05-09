@@ -23,6 +23,7 @@
 
                     @foreach($notes as $note)
                         <x-notes.note-card :note="$note"></x-notes.note-card>
+                        <hr class="my-2">
                     @endforeach
 
                 </aside>

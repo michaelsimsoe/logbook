@@ -8,11 +8,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg md:flex">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg md:flex w-full">
 
-                <div class="p-6 bg-white border-b border-gray-200">
+                <div class="p-6 bg-white border-b border-gray-200 w-full">
                     @foreach($notes as $note)
-                        <x-notes.note-card :note="$note"></x-notes.note-card>
+                        <x-notes.note-card :note="$note" class="max-w-full"></x-notes.note-card>
+                        <hr class="mt-4">
                     @endforeach
                 </div>
             </div>
