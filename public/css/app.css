@@ -32055,11 +32055,9 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
-.note-content {
-  h2 {
+.note-content h2 {
     color: red;
   }
-}
 
 @media (min-width: 640px) {
   .sm\:container {
