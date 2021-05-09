@@ -21,7 +21,8 @@ Route::get('/', function () {
     return view('dashboard', ['notes' => $notes]);
 })->middleware(['auth'])->name('home');;
 
-Route::post('/notes', [NotesController::class, 'store'])->middleware(['auth']);
 Route::get('/notes', [NotesController::class, 'index'])->middleware(['auth'])->name('notes');
+Route::post('/notes', [NotesController::class, 'store'])->middleware(['auth']);
+Route::delete('/notes/{note}', [NotesController::class, 'destroy'])->middleware(['auth'])->name('notes.destroy');
 
 require __DIR__.'/auth.php';
