@@ -14,7 +14,7 @@ class NotesController extends Controller
      */
     public function index()
     {
-        $notes = auth()->user()->notes;
+        $notes = auth()->user()->notes->sortByDesc('created_at');
         return view('notes', ['notes' => $notes]);
     }
 
