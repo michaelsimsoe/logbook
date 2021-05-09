@@ -20,4 +20,9 @@ class Note extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function noteType()
+    {
+        return $this->belongsTo(NoteType::class, 'note_types_id');
+    }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
+use App\Models\NoteType;
 use Illuminate\Http\Request;
 
-class TagController extends Controller
+class NoteTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('dashboard.tags');
+        $types = auth()->user()->noteTypes;
+        return view('dashboard.note_types', ['types' => $types]);
     }
 
     /**
@@ -35,16 +36,23 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required',
+            ]);
+        $attributes['user_id'] = auth()->id();
+
+        NoteType::create($attributes);
+        
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\NoteType  $noteType
      * @return \Illuminate\Http\Response
      */
-    public function show(Tag $tag)
+    public function show(NoteType $noteType)
     {
         //
     }
@@ -52,10 +60,10 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\NoteType  $noteType
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit(NoteType $noteType)
     {
         //
     }
@@ -64,10 +72,10 @@ class TagController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\NoteType  $noteType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, NoteType $noteType)
     {
         //
     }
@@ -75,10 +83,10 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Tag  $tag
+     * @param  \App\Models\NoteType  $noteType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(NoteType $noteType)
     {
         //
     }

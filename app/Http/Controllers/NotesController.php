@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use App\Models\Tag;
+use App\Models\NoteType;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Rule\Parameters;
 
@@ -41,23 +42,23 @@ class NotesController extends Controller
         $attributes = $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'type' => 'required',
             ]);
     
         $attributes['user_id'] = auth()->id();
+        $attributes['note_types_id'] = $request->input('type');
+        
+        $providedTags = $request->input('tags');
         
         $note = Note::create($attributes);
-        $providedTags = $request->input('tags');
-
         $tag = Tag::where('name', $providedTags)->first();
         if (!$tag) {
             $newTag = Tag::create(['name' => $providedTags]);
             $note->tags()->attach($newTag);
-            $note->save();
         } else {
             $note->tags()->attach($tag);
-            $note->save();
         };
+
+        $note->save();
         return back();
     }
 
