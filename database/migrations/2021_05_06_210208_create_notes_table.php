@@ -18,7 +18,7 @@ class CreateNotesTable extends Migration
             
             $table->string('title');
             $table->text('body');
-            $table->string('tags');
+            $table->string('tags')->nullable();
             $table->string('type');
             $table->timestamps();
 
