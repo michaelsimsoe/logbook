@@ -21,7 +21,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('home')" :active="false">
-                        Noe annet
+                        Kunnskapsbase
                     </x-nav-link>
 
                     
