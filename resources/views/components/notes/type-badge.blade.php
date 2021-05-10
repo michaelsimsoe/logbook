@@ -1,1 +1,1 @@
-<span>{{ $type }}</span>
+<span class="inline-block px-1 bg-gray-400 text-white rounded mr-1 uppercase text-sm">{{ $type }}</span>

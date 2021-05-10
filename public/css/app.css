@@ -813,8 +813,14 @@ select {
 .mt-6 {
 	margin-top: 1.5rem;
 }
+.mr-1 {
+	margin-right: 0.25rem;
+}
 .block {
 	display: block;
+}
+.inline-block {
+	display: inline-block;
 }
 .flex {
 	display: flex;
@@ -1032,6 +1038,9 @@ select {
 .border {
 	border-width: 1px;
 }
+.border-2 {
+	border-width: 2px;
+}
 .border-b-2 {
 	border-bottom-width: 2px;
 }
@@ -1126,6 +1135,9 @@ select {
 }
 .p-2 {
 	padding: 0.5rem;
+}
+.p-1 {
+	padding: 0.25rem;
 }
 .px-4 {
 	padding-left: 1rem;
@@ -1541,6 +1553,10 @@ pre[class*="language-"] {
 .hover\:text-gray-600:hover {
 	--tw-text-opacity: 1;
 	color: rgba(75, 85, 99, var(--tw-text-opacity));
+}
+.hover\:text-red-900:hover {
+	--tw-text-opacity: 1;
+	color: rgba(127, 29, 29, var(--tw-text-opacity));
 }
 .focus\:z-10:focus {
 	z-index: 10;
