@@ -47,18 +47,22 @@ class NotesController extends Controller
         $attributes['user_id'] = auth()->id();
         $attributes['note_types_id'] = $request->input('type');
         
-        $providedTags = $request->input('tags');
-        
         $note = Note::create($attributes);
-        $tag = Tag::where('name', $providedTags)->first();
-        if (!$tag) {
-            $newTag = Tag::create(['name' => $providedTags]);
-            $note->tags()->attach($newTag);
-        } else {
-            $note->tags()->attach($tag);
-        };
+
+        $providedTags = explode(',', $request->input('tags'));
+        foreach ($providedTags as $tag) {
+            $t = Tag::where('name', trim($tag))->first();
+            if (!$t) {
+                $newTag = Tag::create(['name' => $tag]);
+                $note->tags()->attach($newTag);
+            } else {
+                $note->tags()->attach($tag);
+            };
+        }
+
 
         $note->save();
+        
         return back();
     }
 
