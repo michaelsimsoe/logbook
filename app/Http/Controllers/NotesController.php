@@ -53,10 +53,10 @@ class NotesController extends Controller
         foreach ($providedTags as $tag) {
             $t = Tag::where('name', trim($tag))->first();
             if (!$t) {
-                $newTag = Tag::create(['name' => $tag]);
+                $newTag = Tag::create(['name' => trim($tag)]);
                 $note->tags()->attach($newTag);
             } else {
-                $note->tags()->attach($tag);
+                $note->tags()->attach($t);
             };
         }
 
@@ -74,7 +74,7 @@ class NotesController extends Controller
      */
     public function show(Note $note)
     {
-        //
+        return view('single', ['note' => $note]);
     }
 
     /**
@@ -85,7 +85,15 @@ class NotesController extends Controller
      */
     public function edit(Note $note)
     {
-        //
+        $types = auth()->user()->noteTypes;
+
+        $tags = $note->tags->map(function ($item, $key) {
+            return $item->name;
+        })->toArray();
+        
+        $tagString = implode(', ', $tags);
+
+        return view('single-edit', ['note' => $note, 'types' => $types, 'tags' => $tagString]);
     }
 
     /**
@@ -97,7 +105,31 @@ class NotesController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        //
+        $attributes = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            ]);
+        $note->update($attributes);
+        
+        $note->note_types_id = $request->input('type');
+        
+        
+        $providedTags = explode(',', $request->input('tags'));
+        $note->tags()->detach();
+        foreach ($providedTags as $tag) {
+            $t = Tag::where('name', trim($tag))->first();
+            if (!$t) {
+                $newTag = Tag::create(['name' => trim($tag)]);
+                $note->tags()->attach($newTag);
+            } else {
+                $note->tags()->attach($t);
+            };
+        }
+        
+        $note->save();
+        
+        return redirect('/notes/'.$note->id)->with('status', 'The note has been updated!');
+        ;
     }
 
     /**

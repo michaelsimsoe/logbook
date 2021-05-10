@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\NoteTypeController;
+use App\Models\Note;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,13 @@ Route::get('/', function () {
 Route::get('/notes', [NotesController::class, 'index'])->middleware(['auth'])->name('notes');
 Route::post('/notes', [NotesController::class, 'store'])->middleware(['auth']);
 Route::delete('/notes/{note}', [NotesController::class, 'destroy'])->middleware(['auth'])->name('notes.destroy');
+Route::get('/notes/{note:id}', [NotesController::class, 'show'])->middleware(['auth']);
+Route::get('/notes/{note:id}/edit', [NotesController::class, 'edit'])->middleware(['auth'])->name('notes.edit');
+Route::patch('/notes/{note:id}', [NotesController::class, 'update'])->middleware(['auth']);
+
+// Route::get('/notes/{note:id}', function (Note $note) {
+//     ddd($note);
+// })->middleware(['auth'])->name('home');;
 
 Route::get('/tags', [TagController::class, 'index'])->middleware(['auth'])->name('tags');
 

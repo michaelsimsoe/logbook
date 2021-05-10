@@ -1,3 +1,3 @@
-<div class="note-content">
+<div class="note-content overflow-scroll">
     {!! Str::markdown($body) !!}
 </div>

@@ -16,4 +16,5 @@
             {{ $tag->name }}
         @endforeach
     </small>
+    <small class="mt-4 block text-gray-400 hover:text-gray-600"><a href="{{ route('notes.edit', ['note' => $note]) }}">Endre</a></small>
 </article>
