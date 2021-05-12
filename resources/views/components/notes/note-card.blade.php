@@ -14,10 +14,10 @@
     <small>{{ $note->created_at->diffForHumans() }}</small>
 
     <x-notes.note-body :body="$note->body"></x-notes.note-body>
-    <small class="inline-block mt-2"><strong>TAGS:</strong>
+    <div class="mt-2 "><strong>TAGS:</strong>
         @foreach($note->tags as $tag)
-            {{ $tag->name }}
+            <x-notes.note-tag :name="$tag->name"></x-notes.note-tag>
         @endforeach
-    </small>
+    </div>
     <small class="mt-4 block text-gray-400 hover:text-gray-600"><a href="{{ route('notes.edit', ['note' => $note]) }}">Endre</a></small>
 </article>
