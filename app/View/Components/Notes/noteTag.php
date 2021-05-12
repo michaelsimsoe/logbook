@@ -18,7 +18,7 @@ class noteTag extends Component
         $this->name = $name;
     }
 
-    private function typeColor()
+    public function typeColor()
     {
         return substr(md5($this->name), 0, 6);
     }
