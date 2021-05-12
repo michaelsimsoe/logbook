@@ -4,7 +4,7 @@ namespace App\View\Components\Notes;
 
 use Illuminate\View\Component;
 
-class noteTag extends Component
+class NoteTag extends Component
 {
     public $name;
 

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
@@ -33,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
         
             return $converter->convertToHtml($content);
         });
+        Blade::component('notes.note-tag', NoteTag::class);
     }
 }
