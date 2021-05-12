@@ -1,4 +1,4 @@
-<h2 class="text-xl">Nytt notat</h2>
+<h2 class="text-xl">Nytt notat</h2><a class="text-sm text-gray-400" href="https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax">MD</a>
 
 <form method="POST" action="/notes" class="flex flex-col">
     @csrf
