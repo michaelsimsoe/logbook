@@ -35,6 +35,6 @@ class AppServiceProvider extends ServiceProvider
         
             return $converter->convertToHtml($content);
         });
-        Blade::component('note-tag', NoteTag::class);
+        // Blade::component('note-tag', NoteTag::class);
     }
 }
