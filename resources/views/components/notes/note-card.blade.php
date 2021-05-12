@@ -16,7 +16,7 @@
     <x-notes.note-body :body="$note->body"></x-notes.note-body>
     <div class="mt-2 "><strong>TAGS:</strong>
         @foreach($note->tags as $tag)
-            <x-notes.note-tag :name="$tag->name"></x-notes.note-tag>
+            {{-- <x-notes.note-tag :name="$tag->name"></x-notes.note-tag> --}}
         @endforeach
     </div>
     <small class="mt-4 block text-gray-400 hover:text-gray-600"><a href="{{ route('notes.edit', ['note' => $note]) }}">Endre</a></small>
