@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="flex flex-col mt-4">
-                            <textarea name="body" id="body" cols="30" rows="10" class="rounded" value="{{ $note->body }}"></textarea>
+                            <textarea name="body" id="body" cols="30" rows="10" class="rounded">{{ $note->body }}</textarea>
                         </div>
 
                         <div class="flex flex-row mt-4 content-center">
@@ -50,6 +50,4 @@
             </div>
         </div>
     </div>
-
-
 </x-app-layout>
