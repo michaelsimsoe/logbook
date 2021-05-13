@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Note;
 use App\Models\Tag;
 use App\Models\NoteType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Rule\Parameters;
 
@@ -15,9 +16,15 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $notes = auth()->user()->notes->sortByDesc('created_at');
+        if ($request->has('tag')) {
+            $tagId = $request->input('tag');
+
+            $notes = Note::getNotesWithId($tagId);
+        } else {
+            $notes = auth()->user()->notes->sortByDesc('created_at');
+        }
         return view('notes', ['notes' => $notes]);
     }
 

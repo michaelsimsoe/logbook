@@ -13,6 +13,11 @@ class Tag extends Model
 
     public function notes()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Note::class);
+    }
+
+    public function fromUser()
+    {
+        return auth()->user();
     }
 }

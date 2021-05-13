@@ -14,7 +14,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('dashboard.tags');
+        $tags = Tag::all();
+        return view('dashboard.tags', compact('tags'));
     }
 
     /**
