@@ -24,6 +24,10 @@
                         Kunnskapsbase
                     </x-nav-link>
 
+                    <x-nav-link :href="route('home')" :active="false">
+                        Ordbok
+                    </x-nav-link>
+
                     
                 </div>
             </div>

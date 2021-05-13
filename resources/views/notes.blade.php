@@ -11,10 +11,29 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg md:flex w-full">
 
                 <div class="p-6 bg-white border-b border-gray-200 w-full">
-                    @foreach($notes as $note)
-                        <x-notes.note-card :note="$note" class="max-w-full"></x-notes.note-card>
-                        <hr class="mt-4">
-                    @endforeach
+                    <ul>
+                        @foreach($notes as $note)
+                            <li></li>
+                            <article class="flex">
+                                <h4 class="mr-3">
+                                    <x-notes.type-badge :type="$note->noteType->name"></x-notes.type-badge>
+                                    <a href="{{ route('notes.single', ['note' => $note]) }}">{{ $note->title}}</a>
+                                </h4>
+                                @foreach($note->tags as $tag)
+                                    <x-notes.note-tag :name="$tag->name"></x-notes.note-tag>
+                                @endforeach
+                                <form action="{{ route('notes.destroy', ['note' => $note]) }}"
+                                method="POST" class="ml-auto">
+                                    @csrf
+                                    {{@method_field('delete')}}
+                                    <button type="submit" class="text-lg text-red-500 hover:text-red-900 rounded-lg">x</button>
+                                </form>
+                            </article>
+                            @unless($loop->last)
+                                <hr class="my-4">
+                            @endunless
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
