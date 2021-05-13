@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TagController;
@@ -17,28 +18,28 @@ use App\Models\Note;
 |
 */
 
-Route::get('/', function () {
-    $today = (new DateTime)->format('Y-m-d');
-    $notes = auth()->user()->notes->where('created_at', '>', $today);
-    $types = auth()->user()->noteTypes;
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        $today = (new DateTime)->format('Y-m-d');
+        $notes = auth()->user()->notes->where('created_at', '>', $today);
+        $types = auth()->user()->noteTypes;
 
-    return view('dashboard.note', ['notes' => $notes, 'types' => $types]);
-})->middleware(['auth'])->name('home');;
+        return view('dashboard.note', ['notes' => $notes, 'types' => $types]);
+    })->name('home');
+    ;
 
-Route::get('/notes', [NotesController::class, 'index'])->middleware(['auth'])->name('notes');
-Route::post('/notes', [NotesController::class, 'store'])->middleware(['auth']);
-Route::delete('/notes/{note}', [NotesController::class, 'destroy'])->middleware(['auth'])->name('notes.destroy');
-Route::get('/notes/{note:id}', [NotesController::class, 'show'])->middleware(['auth'])->name('notes.single');
-Route::get('/notes/{note:id}/edit', [NotesController::class, 'edit'])->middleware(['auth'])->name('notes.edit');
-Route::patch('/notes/{note:id}', [NotesController::class, 'update'])->middleware(['auth']);
+    Route::get('/notes', [NotesController::class, 'index'])->name('notes');
+    Route::post('/notes', [NotesController::class, 'store']);
+    Route::delete('/notes/{note}', [NotesController::class, 'destroy'])->name('notes.destroy');
+    Route::get('/notes/{note:id}', [NotesController::class, 'show'])->name('notes.single');
+    Route::get('/notes/{note:id}/edit', [NotesController::class, 'edit'])->name('notes.edit');
+    Route::patch('/notes/{note:id}', [NotesController::class, 'update']);
 
-// Route::get('/notes/{note:id}', function (Note $note) {
-//     ddd($note);
-// })->middleware(['auth'])->name('home');;
+    Route::post('/notes/{note}/comment', [CommentController::class, 'store'])->name('comment.store');
 
-Route::get('/tags', [TagController::class, 'index'])->middleware(['auth'])->name('tags');
+    Route::get('/tags', [TagController::class, 'index'])->name('tags');
 
-Route::get('/note_types', [NoteTypeController::class, 'index'])->middleware(['auth'])->name('note_types');
-Route::post('/note_types', [NoteTypeController::class, 'store'])->middleware(['auth'])->name('note_types');
-
+    Route::get('/note_types', [NoteTypeController::class, 'index'])->name('note_types');
+    Route::post('/note_types', [NoteTypeController::class, 'store'])->name('note_types');
+});
 require __DIR__.'/auth.php';

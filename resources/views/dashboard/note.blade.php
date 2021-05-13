@@ -12,15 +12,10 @@
                 <p>{{ date('d-m-Y') }}</p>
             </header>
 
-            {{-- <div class="flex justify-between">
-                <a href="/">Alt</a>
-                <a href="/">Kun læring</a>
-                <a href="/">Kun oppgaver</a>
-            </div> --}}
 
             
             @foreach($notes as $note)
-                <x-notes.note-card :note="$note" class=""></x-notes.note-card>
+                <x-notes.note-card open="" :note="$note" class=""></x-notes.note-card>
                 <hr class="my-2">
             @endforeach
 

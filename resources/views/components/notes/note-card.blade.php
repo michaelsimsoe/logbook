@@ -20,4 +20,25 @@
         @endforeach
     </div>
     <small class="mt-4 block text-gray-400 hover:text-gray-600"><a href="{{ route('notes.edit', ['note' => $note]) }}">Endre</a></small>
+    
+    <form action="{{ route('comment.store', ['note' => $note] ) }}" method="POST"
+        class="flex flex-col">
+        @csrf
+        <textarea name="body" id="" cols="30" rows="2"></textarea>
+        <button type="submit" class="bg-gray-200 my-2 self-end p-2 text-xs rounded shadow hover:bg-gray-300 active:bg-gray-400">Legg til</button>
+    </form>
+    <div class="mt-2 pt-1 border-t border-gray-400">
+        <p>Notatet har {{ $note->comments->count().($note->comments->count() == 1 ? ' kommentar' : ' kommentarer')}}</p>
+        @if($note->comments->count() > 0)
+            <details class="ml-3" {{ $attributes['open'] == 'open' ? $attributes->merge(['open']) : '' }}>
+                <summary><small>Se kommentar</small></summary>
+                @foreach($note->comments as $comment)
+                    <article class="border border-gray-400 shadow mt-2 p-4 pt-2 rounded">
+                        <small class="text-xs mb-2">Lagt til {{$comment->created_at->diffForHumans() }}</small>
+                        <div>{!! Str::markdown($comment->body) !!}</div>
+                    </article>
+                @endforeach
+            </details>
+        @endif
+    </div>
 </article>

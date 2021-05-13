@@ -27,6 +27,11 @@ class Note extends Model
         return $this->belongsTo(NoteType::class, 'note_types_id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public static function getNotesWithId($tagId)
     {
         $notes = Note::whereHas('tags', function (Builder $query) use ($tagId) {

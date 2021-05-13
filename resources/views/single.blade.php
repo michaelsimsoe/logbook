@@ -12,7 +12,7 @@
 
                 <div class="p-6 bg-white border-b border-gray-200 w-full">
 
-                    <x-notes.note-card :note="$note"></x-notes.note-card>
+                    <x-notes.note-card open="open" :note="$note"></x-notes.note-card>
                 </div>
             </div>
         </div>
