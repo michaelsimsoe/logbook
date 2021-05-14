@@ -22,7 +22,8 @@ class NoteTypeFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->word(),
+            'user_id' => rand(2, 11),
         ];
     }
 }

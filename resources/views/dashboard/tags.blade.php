@@ -4,6 +4,9 @@
 
             <div class="p-6 bg-white border-b border-gray-200 flex-1">
                     @foreach($tags as $tag)
+                        @if(\App\Models\Note::getNotesWithId($tag->id)->count() < 1)
+                            @continue
+                        @endif
                         <article class="my-2 flex">
                             <x-notes.note-tag :id="$tag->id" :name="$tag->name "></x-notes.note-tag>
                             <div>Har {{ \App\Models\Note::getNotesWithId($tag->id)->count() }} tilknyttede <a href="{{ route('notes', ['tag' => $tag->id]) }}">notater</a></div>
