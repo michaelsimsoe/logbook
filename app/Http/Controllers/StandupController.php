@@ -56,10 +56,10 @@ class StandupController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'date' => 'required|unique:standups',
+            'date' => 'required',
             'done' => 'required',
             'doing' => 'required',
-            'challenges' => 'required|',
+            'challenges' => 'required',
             ]);
         $attributes['user_id'] = auth()->user()->id;
         

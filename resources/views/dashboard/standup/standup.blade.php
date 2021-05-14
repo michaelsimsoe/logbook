@@ -23,18 +23,24 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex">
     
         <div class="p-6 bg-white border-b border-gray-200 w-3/5 mr-2">
-            {{ $standup->date }}
-            <div>
-                <h4>Har gjort</h4>
-                <p>{{ $standup->done }}</p>
+            <h3>Standup for {{ $standup->date }}</h3>
+            <div class="my-2">
+                <h4 class="text-lg border-b border-gray-200">Har gjort</h4>
+                <div class="ml-3 mt-2 p-4 shadow-sm rounded">
+                    {!! Str::markdown($standup->done ) !!}
+                </div>
             </div>
-            <div>
-                <h4>Gjør</h4>
-                <p>{{ $standup->doing }}</p>
+            <div class="my-2">
+                <h4 class="text-lg border-b border-gray-200">Holder på med</h4>
+                <div class="ml-3 mt-2 p-4 shadow-sm rounded">
+                    {!! Str::markdown($standup->doing ) !!}
+                </div>
             </div>
-            <div>
-                <h4>Utfordringer</h4>
-                <p>{{ $standup->challenges }}</p>
+            <div class="my-2">
+                <h4 class="text-lg border-b border-gray-200">Utfordringer og blokker</h4>
+                <div class="ml-3 mt-2 p-4 shadow-sm rounded">
+                    {!! Str::markdown($standup->challenges ) !!}
+                </div>
             </div>
         </div>
 
@@ -42,7 +48,7 @@
 
             <header>
                 <h3 class="text-lg">Forrige relevante dag</h3>
-                <p>{{ $yesterday}}</p>
+                <p>{{ $yesterday }}</p>
             </header>
 
 
