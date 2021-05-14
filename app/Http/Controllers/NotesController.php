@@ -81,6 +81,9 @@ class NotesController extends Controller
      */
     public function show(Note $note)
     {
+        if ($note->user_id != auth()->user()->id) {
+            return back();
+        }
         return view('single', ['note' => $note]);
     }
 
@@ -92,6 +95,9 @@ class NotesController extends Controller
      */
     public function edit(Note $note)
     {
+        if ($note->user_id != auth()->user()->id) {
+            return back();
+        }
         $types = auth()->user()->noteTypes;
 
         $tags = $note->tags->map(function ($item, $key) {
@@ -112,6 +118,9 @@ class NotesController extends Controller
      */
     public function update(Request $request, Note $note)
     {
+        if ($note->user_id != auth()->user()->id) {
+            return abort('No');
+        }
         $attributes = $request->validate([
             'title' => 'required',
             'body' => 'required',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use App\Models\Standup;
 use Carbon\Carbon;
 use DateTime;
@@ -18,7 +19,9 @@ class StandupController extends Controller
      */
     public function index()
     {
-        //
+        $standups = auth()->user()->standups;
+        ddd($standups);
+        return view('dashboard.standup.standup-all', compact('standups'));
     }
 
     /**
@@ -28,7 +31,20 @@ class StandupController extends Controller
      */
     public function create()
     {
-        return view('dashboard.standup.standup-new');
+        $date = Carbon::yesterday();
+        $notes = auth()->user()->notes->where('created_at', '>', $date);
+        if ($notes->count() < 1) {
+            if (auth()->user()->notes->count() < 1) {
+                $notes = null;
+            } else {
+                $lastRecordDate = auth()->user()->notes->sortByDesc('created_at')->first();
+                $newDate = $lastRecordDate['created_at']->toDateString();
+                $date = Carbon::create($newDate);
+                $notes = auth()->user()->notes->where('created_at', '>', $newDate);
+            }
+        }
+
+        return view('dashboard.standup.standup-new', ['notes' => $notes, 'yesterday' => $date->format('l j F Y')]);
     }
 
     /**
@@ -45,6 +61,8 @@ class StandupController extends Controller
             'doing' => 'required',
             'challenges' => 'required|',
             ]);
+        $attributes['user_id'] = auth()->user()->id;
+        
         Standup::create($attributes);
 
         return back();
@@ -58,23 +76,46 @@ class StandupController extends Controller
      */
     public function show(Standup $standup)
     {
+        if ($standup->user_id != auth()->user()->id) {
+            return back();
+        }
     }
 
     public function current()
     {
         $today = (new DateTime())->format('Y-m-d');
-        $yesterday = Carbon::yesterday();
-        $notes = auth()->user()->notes->where('created_at', '>', $yesterday);
+        $date = Carbon::yesterday();
+        $notes = auth()->user()->notes->where('created_at', '>', $date);
+
+        if ($notes->count() < 1) {
+            if (auth()->user()->notes->count() < 1) {
+                $notes = null;
+            } else {
+                $lastRecordDate = auth()->user()->notes->sortByDesc('created_at')->first();
+                $newDate = $lastRecordDate['created_at']->toDateString();
+                $date = Carbon::create($newDate);
+                $notes = auth()->user()->notes->where('created_at', '>', $newDate);
+            }
+        }
 
         try {
-            // ddd('here');
-            $standup = Standup::where('date', $today)->firstOrFail();
+            $standup = Standup::where('user_id', auth()->user()->id)->whereDate('date', $today)->firstOrFail();
+            // $standup = Standup::where('date', $today)->firstOrFail();
         } catch (ModelNotFoundException) {
             return redirect()->route('standup.new');
         }
 
 
-        return view('dashboard.standup.standup', ['standup' => $standup, 'notes' => $notes]);
+        return view('dashboard.standup.standup', ['standup' => $standup, 'notes' => $notes, 'yesterday' => $date->format('l j F Y')]);
+    }
+
+    public function lastStandup()
+    {
+        try {
+            // $standup = Standup::where('date', $today)->firstOrFail();
+        } catch (ModelNotFoundException) {
+            return redirect()->route('standup.new');
+        }
     }
 
     /**

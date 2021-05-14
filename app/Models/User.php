@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(NoteType::class);
     }
+
+    public function standups()
+    {
+        return $this->hasMany(Standup::class);
+    }
 }

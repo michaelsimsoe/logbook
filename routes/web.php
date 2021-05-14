@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     // })->name('standup');
 
     Route::get('/standup', [StandupController::class, 'current'])->name('standup');
+    Route::get('/standup/all', [StandupController::class, 'index'])->name('standup.all');
     Route::get('/standup/new', [StandupController::class, 'create'])->name('standup.new');
     Route::post('/standup/new', [StandupController::class, 'store'])->name('standup.store');
 

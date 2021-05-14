@@ -26,7 +26,7 @@ class NoteFactory extends Factory
         return [
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
-            'created_at' => $this->faker->dateTimeBetween('-1 week', 'now'),
+            'created_at' => $this->faker->dateTimeBetween('-1 week', '-2 days'),
         ];
     }
 }

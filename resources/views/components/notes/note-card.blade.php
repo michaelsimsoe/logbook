@@ -11,7 +11,7 @@
 
     </form>
 
-    <small>{{ $note->created_at->diffForHumans() }}</small>
+    <small>{{ $note->created_at->diffForHumans() }}  ({{ $note->created_at->format('l j F Y') }})</small>
 
     <x-notes.note-body :body="$note->body"></x-notes.note-body>
     <div class="mt-2 "><strong>TAGS:</strong>

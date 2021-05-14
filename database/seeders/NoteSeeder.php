@@ -19,13 +19,17 @@ class NoteSeeder extends Seeder
     public function run()
     {
         Note::factory(100)
-        ->has(Comment::factory()->count(rand(0, 8)))
+        // ->has(Comment::factory()->count(rand(0, 8)))
         ->create([
             'user_id' => 1,
             'note_types_id' => rand(1, 2),
         ])->each(function ($note) {
             $tag = Tag::all()->random(rand(2, 10))->pluck('id');
             $note->tags()->attach($tag);
+            $comments = Comment::factory(rand(0, 8))->make();
+            foreach ($comments as $comment) {
+                $note->comments()->create(['body' => $comment->body]);
+            }
         });
 
         Note::factory(100)

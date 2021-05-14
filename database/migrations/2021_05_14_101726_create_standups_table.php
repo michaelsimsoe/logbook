@@ -18,7 +18,8 @@ class CreateStandupsTable extends Migration
             $table->text('done');
             $table->text('doing');
             $table->text('challenges');
-            $table->date('date')->unique();
+            $table->date('date');
+            
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex">
     
 
-        <div class="p-6 bg-white border-b border-gray-200 w-full">
+        <div class="p-6 bg-white border-b border-gray-200 w-3/5">
             Ny standup
             @if ($errors->any())
                 <ul>
@@ -53,6 +53,22 @@
                 </fieldset>
                 <button type="submit">Lag ny</button>
             </form>
+        </div>
+        <div class="bg-white shadow-sm overflow-hidden sm:rounded-lg md:flex flex-col  w-2/5 p-6">
+
+            <header>
+                <h3 class="text-lg">Forrige relevante dag</h3>
+                <p>{{ $yesterday }}</p>
+            </header>
+
+
+            @if($notes)
+                @foreach($notes as $note)
+                    <x-notes.note-card open="" :note="$note" class=""></x-notes.note-card>
+                    <hr class="my-2">
+                @endforeach
+            @endif
+
         </div>
 
     </div>
