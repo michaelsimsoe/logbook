@@ -835,6 +835,9 @@ select {
 .mb-2 {
 	margin-bottom: 0.5rem;
 }
+.mb-6 {
+	margin-bottom: 1.5rem;
+}
 .block {
 	display: block;
 }
@@ -1196,6 +1199,10 @@ select {
 	padding-top: 0.25rem;
 	padding-bottom: 0.25rem;
 }
+.py-0 {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
 .pt-1 {
 	padding-top: 0.25rem;
 }
@@ -1222,6 +1229,15 @@ select {
 }
 .pt-6 {
 	padding-top: 1.5rem;
+}
+.pb-12 {
+	padding-bottom: 3rem;
+}
+.pt-12 {
+	padding-top: 3rem;
+}
+.pb-6 {
+	padding-bottom: 1.5rem;
 }
 .text-center {
 	text-align: center;

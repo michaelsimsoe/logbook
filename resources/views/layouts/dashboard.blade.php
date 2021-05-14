@@ -8,16 +8,20 @@
             Notat
         </x-nav-link>
 
+        <x-nav-link :href="route('standup')" :active="false" class="border-none mr-4">
+            Standup
+        </x-nav-link>
+
         <x-nav-link :href="route('note_types')" :active="request()->routeIs('note_types')" class="border-none mr-4">
             Typer
         </x-nav-link>
 
-        <x-nav-link :href="route('tags')" :active="request()->routeIs('tags')" class="border-none">
+        <x-nav-link :href="route('tags')" :active="request()->routeIs('tags')" class="border-none mr-4">
             Tagger
         </x-nav-link>
     </x-slot>
 
-    <div class="py-12">
+    <div {{ $attributes->merge(['class' => 'py-12']) }}>
         {{ $slot }}
     </div>
 </x-app-layout>

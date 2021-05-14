@@ -28,6 +28,10 @@
                         Ordbok
                     </x-nav-link>
 
+                    <x-nav-link :href="route('home')" :active="false">
+                        Lenker
+                    </x-nav-link>
+
                     
                 </div>
             </div>
