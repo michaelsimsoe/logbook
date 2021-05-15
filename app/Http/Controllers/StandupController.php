@@ -29,7 +29,7 @@ class StandupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $date = Carbon::yesterday();
         $notes = auth()->user()->notes->where('created_at', '>', $date);
@@ -44,7 +44,12 @@ class StandupController extends Controller
             }
         }
 
-        return view('dashboard.standup.standup-new', ['notes' => $notes, 'yesterday' => $date->format('l j F Y')]);
+        $done = $request->old('done');
+        $doing = $request->old('doing');
+        $challenges = $request->old('challenges');
+        
+
+        return view('dashboard.standup.standup-new', ['notes' => $notes, 'yesterday' => $date->format('l j F Y'), compact('done', 'doing', 'challenges')]);
     }
 
     /**
@@ -56,12 +61,18 @@ class StandupController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'date' => 'required',
             'done' => 'required',
             'doing' => 'required',
             'challenges' => 'required',
+            'date' => 'required',
             ]);
         $attributes['user_id'] = auth()->user()->id;
+
+        $existingStandup = auth()->user()->standups->where('date', $request->input('date'));
+        if ($existingStandup->count() > 0) {
+            return back()->withInput()->withErrors('Det finnes allerede ett standupnotat på denne datoen.');
+            ;
+        }
         
         Standup::create($attributes);
 
@@ -100,7 +111,6 @@ class StandupController extends Controller
 
         try {
             $standup = Standup::where('user_id', auth()->user()->id)->whereDate('date', $today)->firstOrFail();
-            // $standup = Standup::where('date', $today)->firstOrFail();
         } catch (ModelNotFoundException) {
             return redirect()->route('standup.new');
         }

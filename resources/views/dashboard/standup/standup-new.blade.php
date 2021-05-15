@@ -28,7 +28,7 @@
             @if ($errors->any())
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        <li class="text-red-900">{{ $error }}</li>
                     @endforeach
                 </ul>
             @endif
@@ -41,15 +41,15 @@
                 </fieldset>
                 <fieldset class="flex flex-col">
                     <label for="done">Har gjort</label>
-                    <textarea name="done" id="" cols="30" rows="10"></textarea>
+                    <textarea name="done" id="" cols="30" rows="10">{{ old('done') }}</textarea>
                 </fieldset>
                 <fieldset class="flex flex-col">
                     <label for="doing">Gjør</label>
-                    <textarea name="doing" id="" cols="30" rows="10"></textarea>
+                    <textarea name="doing" id="" cols="30" rows="10">{{ old('doing') }}</textarea>
                 </fieldset>
                 <fieldset class="flex flex-col">
                     <label for="challenges">Utfordringer eller blocker</label>
-                    <textarea name="challenges" id="" cols="30" rows="10"></textarea>
+                    <textarea name="challenges" id="" cols="30" rows="10">{{ old('challenges') }}</textarea>
                 </fieldset>
                 <button type="submit">Lag ny</button>
             </form>
