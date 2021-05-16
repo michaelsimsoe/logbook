@@ -20,7 +20,6 @@ class StandupController extends Controller
     public function index()
     {
         $standups = auth()->user()->standups;
-        ddd($standups);
         return view('dashboard.standup.standup-all', compact('standups'));
     }
 
@@ -76,7 +75,12 @@ class StandupController extends Controller
         
         Standup::create($attributes);
 
-        return back();
+        $today = (new DateTime())->format('Y-m-d');
+        if ($attributes['date'] == $today) {
+            return redirect()->route('standup');
+        }
+        
+        return redirect()->route('standup.all');
     }
 
     /**
@@ -90,6 +94,8 @@ class StandupController extends Controller
         if ($standup->user_id != auth()->user()->id) {
             return back();
         }
+
+        return view('dashboard.standup.standup-single', compact('standup'));
     }
 
     public function current()
@@ -122,10 +128,12 @@ class StandupController extends Controller
     public function lastStandup()
     {
         try {
-            // $standup = Standup::where('date', $today)->firstOrFail();
+            $standup = auth()->user()->standups->sortByDesc('created_at')->skip(1)->take(1)->first();
         } catch (ModelNotFoundException) {
             return redirect()->route('standup.new');
         }
+
+        return view('dashboard.standup.standup-single', compact('standup'));
     }
 
     /**

@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/standup', [StandupController::class, 'current'])->name('standup');
     Route::get('/standup/all', [StandupController::class, 'index'])->name('standup.all');
     Route::get('/standup/new', [StandupController::class, 'create'])->name('standup.new');
+    Route::get('/standup/last', [StandupController::class, 'lastStandup'])->name('standup.last');
+    Route::get('/standup/{standup}', [StandupController::class, 'show'])->name('standup.show');
     Route::post('/standup/new', [StandupController::class, 'store'])->name('standup.store');
 
     Route::post('/notes/{note}/comment', [CommentController::class, 'store'])->name('comment.store');

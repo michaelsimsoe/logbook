@@ -8,7 +8,7 @@
             <x-nav-link :href="route('standup')" :active="false" class="border-none mr-4">
                 Dagens
             </x-nav-link>
-            <x-nav-link :href="route('standup')" :active="false" class="border-none mr-4">
+            <x-nav-link :href="route('standup.last')" :active="false" class="border-none mr-4">
                 Forrige
             </x-nav-link>
             <x-nav-link :href="route('standup')" :active="false" class="border-none mr-4">
@@ -37,21 +37,21 @@
                 @csrf
                 <fieldset class="flex flex-col">
                     <label for="date">For dato</label>
-                    <input name="date" type="date" value="{{ date('Y-m-d') }}">
+                    <input name="date" type="date" value="{{ date('Y-m-d') }}" class="rounded shadow-md border-gray-400">
                 </fieldset>
-                <fieldset class="flex flex-col">
+                <fieldset class="flex flex-col mt-2">
                     <label for="done">Har gjort</label>
-                    <textarea name="done" id="" cols="30" rows="10">{{ old('done') }}</textarea>
+                    <textarea name="done" id="" cols="30" rows="10" class="rounded shadow-md border-gray-400">{{ old('done') }}</textarea>
                 </fieldset>
-                <fieldset class="flex flex-col">
+                <fieldset class="flex flex-col mt-2">
                     <label for="doing">Gjør</label>
-                    <textarea name="doing" id="" cols="30" rows="10">{{ old('doing') }}</textarea>
+                    <textarea name="doing" id="" cols="30" rows="10" class="rounded shadow-md border-gray-400">{{ old('doing') }}</textarea>
                 </fieldset>
-                <fieldset class="flex flex-col">
+                <fieldset class="flex flex-col mt-2">
                     <label for="challenges">Utfordringer eller blocker</label>
-                    <textarea name="challenges" id="" cols="30" rows="10">{{ old('challenges') }}</textarea>
+                    <textarea name="challenges" id="" cols="30" rows="10" class="rounded shadow-md border-gray-400">{{ old('challenges') }}</textarea>
                 </fieldset>
-                <button type="submit">Lag ny</button>
+                <button type="submit" class="bg-green-400 rounded p-2 mt-6 shadow hover:bg-green-600 active:shadow-none">Lag ny</button>
             </form>
         </div>
         <div class="bg-white shadow-sm overflow-hidden sm:rounded-lg md:flex flex-col  w-2/5 p-6">
