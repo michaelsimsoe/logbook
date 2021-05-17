@@ -23,7 +23,15 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex">
     
         <div class="p-6 bg-white border-b border-gray-200 w-full mr-2">
-            <h3>Standup for {{ $standup->date }}</h3>
+            <div class="flex justify-between items-center">
+                <h3>Standup for {{ $standup->date }}</h3>
+                    <form action="{{ route('standup.destroy', ['standup' => $standup]) }}"
+                    method="POST">
+                        @csrf
+                        {{@method_field('delete')}}
+                        <button type="submit" class="text-lg text-red-500 hover:text-red-900 rounded-lg p-2">x</button>
+                    </form>
+            </div>
             <div class="my-2">
                 <h4 class="text-lg border-b border-gray-200">Har gjort</h4>
                 <div class="ml-3 mt-2 p-4 shadow-sm rounded">

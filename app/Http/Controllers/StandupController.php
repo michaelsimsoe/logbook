@@ -148,7 +148,11 @@ class StandupController extends Controller
      */
     public function edit(Standup $standup)
     {
-        //
+        if ($standup->user_id != auth()->user()->id) {
+            return back();
+        }
+
+        return view('dashboard.standup.standup-edit', compact('standup'));
     }
 
     /**
@@ -160,7 +164,9 @@ class StandupController extends Controller
      */
     public function update(Request $request, Standup $standup)
     {
-        //
+        $standup->update($request->all());
+
+        return redirect()->route('standup.show', compact('standup'));
     }
 
     /**
@@ -171,6 +177,7 @@ class StandupController extends Controller
      */
     public function destroy(Standup $standup)
     {
-        //
+        $standup->delete();
+        return redirect()->route('standup.all');
     }
 }

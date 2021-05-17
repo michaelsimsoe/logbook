@@ -47,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/standup/new', [StandupController::class, 'create'])->name('standup.new');
     Route::get('/standup/last', [StandupController::class, 'lastStandup'])->name('standup.last');
     Route::get('/standup/{standup}', [StandupController::class, 'show'])->name('standup.show');
+    Route::delete('/standup/{standup}', [StandupController::class, 'destroy'])->name('standup.destroy');
+    Route::get('/standup/{standup}/edit', [StandupController::class, 'edit'])->name('standup.edit');
+    Route::patch('/standup/{standup}/edit', [StandupController::class, 'update'])->name('standup.edit');
     Route::post('/standup/new', [StandupController::class, 'store'])->name('standup.store');
 
     Route::post('/notes/{note}/comment', [CommentController::class, 'store'])->name('comment.store');

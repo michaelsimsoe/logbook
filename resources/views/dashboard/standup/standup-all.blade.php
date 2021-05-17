@@ -23,8 +23,12 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex">
     
         <div class="p-6 bg-white border-b border-gray-200 w-full mr-2">
+            <h3>Alle standups</h3>
             @foreach($standups as $standup)
-                <div class="text-gray-600 hover:text-gray-800"><a href="{{ route('standup.show', ['standup' => $standup]) }}">{{ $standup->date }}</a></div>
+                <div class="text-gray-600 hover:text-gray-800 flex items-center">
+                    <a href="{{ route('standup.show', ['standup' => $standup]) }}">{{ $standup->date }}</a>
+                    <a href="{{ route('standup.edit', ['standup' => $standup]) }}" class="ml-4 text-sm block text-gray-400 hover:text-gray-600">Endre</a>
+                </div>
             @endforeach
         </div>
     </div>
