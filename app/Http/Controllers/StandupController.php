@@ -129,6 +129,10 @@ class StandupController extends Controller
     {
         try {
             $standup = auth()->user()->standups->sortByDesc('created_at')->skip(1)->take(1)->first();
+
+            if (!$standup) {
+                return redirect()->route('standup.new');
+            }
         } catch (ModelNotFoundException) {
             return redirect()->route('standup.new');
         }
