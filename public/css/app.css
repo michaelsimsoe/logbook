@@ -757,6 +757,9 @@ select {
 .m-4 {
 	margin: 1rem;
 }
+.m-1 {
+	margin: 0.25rem;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
@@ -768,6 +771,10 @@ select {
 .my-4 {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
+}
+.my-3 {
+	margin-top: 0.75rem;
+	margin-bottom: 0.75rem;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -837,6 +844,9 @@ select {
 }
 .mb-6 {
 	margin-bottom: 1.5rem;
+}
+.mb-3 {
+	margin-bottom: 0.75rem;
 }
 .block {
 	display: block;
@@ -918,6 +928,12 @@ select {
 }
 .w-2\/5 {
 	width: 40%;
+}
+.w-2\/3 {
+	width: 66.666667%;
+}
+.w-6\/12 {
+	width: 50%;
 }
 .max-w-7xl {
 	max-width: 80rem;
@@ -1071,6 +1087,9 @@ select {
 }
 .border-2 {
 	border-width: 2px;
+}
+.border-4 {
+	border-width: 4px;
 }
 .border-b-2 {
 	border-bottom-width: 2px;
@@ -1624,6 +1643,12 @@ pre[class*="language-"] {
 .focus\:z-10:focus {
 	z-index: 10;
 }
+.focus\:border-4:focus {
+	border-width: 4px;
+}
+.focus\:border-2:focus {
+	border-width: 2px;
+}
 .focus\:border-blue-300:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(147, 197, 253, var(--tw-border-opacity));
@@ -1643,6 +1668,10 @@ pre[class*="language-"] {
 .focus\:border-indigo-700:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(67, 56, 202, var(--tw-border-opacity));
+}
+.focus\:border-gray-600:focus {
+	--tw-border-opacity: 1;
+	border-color: rgba(75, 85, 99, var(--tw-border-opacity));
 }
 .focus\:bg-gray-100:focus {
 	--tw-bg-opacity: 1;
@@ -1679,6 +1708,11 @@ pre[class*="language-"] {
 .focus\:ring:focus {
 	--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
 	--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.focus\:ring-0:focus {
+	--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+	--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 	box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 .focus\:ring-indigo-200:focus {

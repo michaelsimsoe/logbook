@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LinkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TagController;
@@ -58,5 +59,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/note_types', [NoteTypeController::class, 'index'])->name('note_types');
     Route::post('/note_types', [NoteTypeController::class, 'store'])->name('note_types');
+
+    Route::resource('links', LinkController::class);
 });
 require __DIR__.'/auth.php';

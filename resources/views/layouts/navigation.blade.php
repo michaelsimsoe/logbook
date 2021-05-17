@@ -28,7 +28,7 @@
                         Ordbok
                     </x-nav-link>
 
-                    <x-nav-link :href="route('home')" :active="false">
+                    <x-nav-link :href="route('links.index')" :active="false">
                         Lenker
                     </x-nav-link>
 

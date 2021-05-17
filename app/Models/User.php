@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->hasMany(Note::class);
     }
 
+    public function links()
+    {
+        return $this->hasMany(Link::class);
+    }
+
     public function noteTypes()
     {
         return $this->hasMany(NoteType::class);

@@ -24,7 +24,7 @@
     <form action="{{ route('comment.store', ['note' => $note] ) }}" method="POST"
         class="flex flex-col">
         @csrf
-        <textarea name="body" id="" cols="30" rows="2"></textarea>
+        <textarea name="body" id="" cols="30" rows="2" class="rounded shadow-md focus:ring-0 focus:border-2 focus:border-gray-600"></textarea>
         <button type="submit" class="bg-gray-200 my-2 self-end p-2 text-xs rounded shadow hover:bg-gray-300 active:bg-gray-400">Legg til</button>
     </form>
     <div class="mt-2 pt-1 border-t border-gray-400">
