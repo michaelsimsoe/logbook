@@ -760,6 +760,9 @@ select {
 .m-1 {
 	margin: 0.25rem;
 }
+.m-6 {
+	margin: 1.5rem;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
@@ -1056,6 +1059,9 @@ select {
 .self-end {
 	align-self: flex-end;
 }
+.self-start {
+	align-self: flex-start;
+}
 .overflow-hidden {
 	overflow: hidden;
 }
@@ -1131,6 +1137,10 @@ select {
 .border-indigo-400 {
 	--tw-border-opacity: 1;
 	border-color: rgba(129, 140, 248, var(--tw-border-opacity));
+}
+.border-gray-600 {
+	--tw-border-opacity: 1;
+	border-color: rgba(75, 85, 99, var(--tw-border-opacity));
 }
 .bg-white {
 	--tw-bg-opacity: 1;
@@ -1304,6 +1314,9 @@ select {
 }
 .uppercase {
 	text-transform: uppercase;
+}
+.italic {
+	font-style: italic;
 }
 .leading-5 {
 	line-height: 1.25rem;

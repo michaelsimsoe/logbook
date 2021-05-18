@@ -30,12 +30,15 @@
                     </form>
                     <h3 class="text-lg mb-2 mt-4">Alle lenker</h3>
                     @foreach($links as $link)
-                        <div class="flex items-center">
-                            <a href="{{ route('links.show', ['link' => $link])}}">
-                                {{ $link->name ? $link->name : $link->url }}
+                        <div class="flex items-center mb-2">
+                            <a href="{{ route('links.show', ['link' => $link])}}" class="flex flex-col">
+                                <span>
+                                    {{ $link->name ? $link->name : $link->url }}
+                                </span>
+                                <span class="text-xs text-gray-500"> {{ $link->created_at }}</span>
                             </a>
                             @if($link->description)
-                                <p title="{{ $link->description }}" class="ml-3 text-sm text-gray-400">{{ Str::limit($link->description, 30, '...') }}</p>
+                                <p title="{{ $link->description }}" class="ml-3 text-sm text-gray-400 self-start mt-1">{{ Str::limit($link->description, 30, '...') }}</p>
                             @endif
                         </div>
                     @endforeach

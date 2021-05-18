@@ -53,7 +53,7 @@ class LinkController extends Controller
      */
     public function show(Link $link)
     {
-        return view('links.show', compact('link'));
+        return view('links.links-show', compact('link'));
     }
 
     /**
@@ -64,7 +64,7 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        //
+        return view('links.links-edit', compact('link'));
     }
 
     /**
@@ -76,7 +76,16 @@ class LinkController extends Controller
      */
     public function update(Request $request, Link $link)
     {
-        //
+        $attributes = $request->validate([
+            'url' => 'required',
+            'name' => 'nullable',
+            'description' => 'nullable',
+            ]);
+
+        $link->update($attributes);
+
+
+        return redirect()->route('links.show', compact('link'));
     }
 
     /**
@@ -87,8 +96,7 @@ class LinkController extends Controller
      */
     public function destroy(Link $link)
     {
-        $link->destroy();
-
+        $link->delete();
         return redirect()->route('links.index');
     }
 }

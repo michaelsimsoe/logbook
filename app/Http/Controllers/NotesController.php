@@ -156,7 +156,6 @@ class NotesController extends Controller
      */
     public function destroy(Note $note)
     {
-        $n = Note::find($note->id);
         $note->delete();
         return back();
     }
