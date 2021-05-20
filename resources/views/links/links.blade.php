@@ -14,6 +14,7 @@
                 <div class="p-6 bg-white border-b border-gray-200 w-full flex flex-col">
                     <form action="{{ route('links.store')}}" method="POST" class="flex flex-col w-6/12 my-3">
                         @csrf
+                        <h3 class="text-lg mb-3">Legg til ny lenke</h3>
                         <div class="flex flex-col mb-3 ">
                             <label for="url">Url</label>
                             <input type="url" name="url" id="" class="rounded shadow">
