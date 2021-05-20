@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LinkController;
+use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TagController;
@@ -61,5 +62,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/note_types', [NoteTypeController::class, 'store'])->name('note_types');
 
     Route::resource('links', LinkController::class);
+    Route::resource('words', WordController::class);
 });
 require __DIR__.'/auth.php';

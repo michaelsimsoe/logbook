@@ -24,7 +24,7 @@
                         Kunnskapsbase
                     </x-nav-link>
 
-                    <x-nav-link :href="route('home')" :active="false">
+                    <x-nav-link :href="route('words.index')" :active="false">
                         Ordbok
                     </x-nav-link>
 

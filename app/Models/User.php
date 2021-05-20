@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Standup::class);
     }
+
+    public function words()
+    {
+        return $this->hasMany(Word::class);
+    }
 }
