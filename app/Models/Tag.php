@@ -13,7 +13,7 @@ class Tag extends Model
 
     public function notes()
     {
-        return $this->belongsToMany(Note::class);
+        return $this->morphedByMany(Note::class);
     }
 
     public function fromUser()

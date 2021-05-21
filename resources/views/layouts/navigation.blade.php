@@ -24,11 +24,11 @@
                         Kunnskapsbase
                     </x-nav-link>
 
-                    <x-nav-link :href="route('words.index')" :active="false">
+                    <x-nav-link :href="route('words.index')" :active="request()->routeIs('words.index')">
                         Ordbok
                     </x-nav-link>
 
-                    <x-nav-link :href="route('links.index')" :active="false">
+                    <x-nav-link :href="route('links.index')" :active="request()->routeIs('links.index')">
                         Lenker
                     </x-nav-link>
 
