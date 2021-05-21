@@ -43,7 +43,7 @@ class WordController extends Controller
             ]);
         auth()->user()->words()->create($attributes);
 
-        return view('words.words');
+        return redirect()->route('words.index');
     }
 
     /**
