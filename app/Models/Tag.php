@@ -16,6 +16,11 @@ class Tag extends Model
         return $this->morphedByMany(Note::class);
     }
 
+    public function links()
+    {
+        return $this->morphedByMany(Link::class);
+    }
+
     public function fromUser()
     {
         return auth()->user();

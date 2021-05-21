@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Link;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class LinkController extends Controller
@@ -40,7 +41,18 @@ class LinkController extends Controller
         $attributes = $request->validate([
             'url' => 'required',
             ]);
-        auth()->user()->links()->create($attributes);
+        $link = auth()->user()->links()->create($attributes);
+
+        $providedTags = explode(',', $request->input('tags'));
+        foreach ($providedTags as $tag) {
+            $t = Tag::where('name', trim($tag))->first();
+            if (!$t) {
+                $newTag = Tag::create(['name' => trim($tag)]);
+                $link->tags()->attach($newTag);
+            } else {
+                $link->tags()->attach($t);
+            };
+        }
 
         return back();
     }
@@ -64,7 +76,13 @@ class LinkController extends Controller
      */
     public function edit(Link $link)
     {
-        return view('links.links-edit', compact('link'));
+        $tags = $link->tags->map(function ($item, $key) {
+            return $item->name;
+        })->toArray();
+        
+        $tagString = implode(', ', $tags);
+
+        return view('links.links-edit', compact('link', 'tagString'));
     }
 
     /**
@@ -84,7 +102,22 @@ class LinkController extends Controller
 
         $link->update($attributes);
 
+        // TODO: remove duplicates
+        $providedTags = explode(',', $request->input('tags'));
 
+        $link->tags()->detach();
+        foreach ($providedTags as $tag) {
+            $t = Tag::where('name', trim($tag))->first();
+            if (!$t) {
+                $newTag = Tag::create(['name' => trim($tag)]);
+                $link->tags()->attach($newTag);
+            } else {
+                $link->tags()->attach($t);
+            };
+        }
+
+        $link->save();
+        
         return redirect()->route('links.show', compact('link'));
     }
 
