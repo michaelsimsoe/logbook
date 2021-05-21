@@ -65,7 +65,7 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
-        //
+        return view('words.words-edit', compact('word'));
     }
 
     /**
@@ -77,7 +77,16 @@ class WordController extends Controller
      */
     public function update(Request $request, Word $word)
     {
-        //
+        $attributes = $request->validate([
+            'word' => 'required',
+            'name' => 'nullable',
+            'description' => 'nullable',
+            ]);
+
+        $word->update($attributes);
+
+
+        return redirect()->route('words.show', compact('word'));
     }
 
     /**
@@ -88,6 +97,7 @@ class WordController extends Controller
      */
     public function destroy(Word $word)
     {
-        //
+        $word->delete();
+        return redirect()->route('words.index');
     }
 }

@@ -2,21 +2,23 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Linker
+            Ordbok
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg md:flex w-full">
-                <a href="{{ route('links.index') }}" class="m-6 flex flow-row text-gray-700 hover:text-gray-900">&#x21e6; Tilbake</a>
-                <div class="p-6 bg-white border-b border-gray-200 flex flex-col">
-                    <h3 class="text-lg border-b border-gray-600 mb-4">{{ $link->name }}</h3>
-                    <a href="{{ $link->url }}" class="italic font-gray-500 mb-2">{{ $link->url }}</a>
-                    <p>{{ $link->description }}</p>
+                <a href="{{ route('words.index') }}" class="m-6 flex flow-row text-gray-700 hover:text-gray-900">&#x21e6; Tilbake</a>
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="flex">
+                        <span class="bold mr-2">{{ $word->word }}:</span>
+                        <span class="text-gray-700 italic">{{ $word->meaning }}</span>
+                    </div>
+                    <p class="text-gray-600">{{ $word->description }}</p>
                     <div class="flex flex-row justify-between">
-                        <a href="{{ route('links.edit', compact('link'))}}" class="text-sm text-gray-600 mt-4">Endre</a>
-                        <form action="{{ route('links.destroy', ['link' => $link]) }}"
+                        <a href="{{ route('words.edit', compact('word'))}}" class="text-sm text-gray-600 mt-4">Endre</a>
+                        <form action="{{ route('words.destroy', ['word' => $word]) }}"
                         method="POST">
                             @csrf
                             {{@method_field('delete')}}
