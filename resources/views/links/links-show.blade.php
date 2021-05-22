@@ -23,6 +23,11 @@
                             <button type="submit" class="text-lg text-red-500 hover:text-red-900 rounded-lg p-2">x</button>
                         </form>
                     </div>
+                    <div class="items-center">
+                        @foreach($link->tags as $tag)
+                            <x-tag :taggableType="$link->getTable()" :id="$tag->id" :name="$tag->name"></x-tag>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

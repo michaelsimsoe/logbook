@@ -50,6 +50,11 @@
                             @if($word->description)
                                 <p title="{{ $word->description }}" class="text-gray-700 mt-1">{{ $word->description }}</p>
                             @endif
+                            <div class="items-center">
+                                @foreach($word->tags as $tag)
+                                    <x-tag :taggableType="$word->getTable()" :id="$tag->id" :name="$tag->name"></x-tag>
+                                @endforeach
+                            </div>
                         </div>
                     @endforeach
                 </div>

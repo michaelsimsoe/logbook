@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\View\Components\Notes\NoteTag;
+use App\View\Components\Tag;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -36,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
             return $converter->convertToHtml($content);
         });
         Blade::component('note-tag', NoteTag::class);
+        Blade::component('tag', Tag::class);
     }
 }

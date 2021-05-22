@@ -45,6 +45,11 @@
                             @if($link->description)
                                 <p title="{{ $link->description }}" class="ml-3 text-sm text-gray-400 self-start mt-1">{{ Str::limit($link->description, 30, '...') }}</p>
                             @endif
+                            <div class="items-center">
+                                @foreach($link->tags as $tag)
+                                    <x-tag :taggableType="$link->getTable()" :id="$tag->id" :name="$tag->name"></x-tag>
+                                @endforeach
+                            </div>
                         </div>
                     @endforeach
                 </div>
