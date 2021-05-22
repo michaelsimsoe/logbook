@@ -8,6 +8,7 @@ use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\NoteTypeController;
 use App\Http\Controllers\StandupController;
+use App\Http\Controllers\StandupSettingController;
 use App\Models\Note;
 
 /*
@@ -63,5 +64,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('links', LinkController::class);
     Route::resource('words', WordController::class);
+    Route::resource('standup-setting', StandupSettingController::class);
 });
 require __DIR__.'/auth.php';

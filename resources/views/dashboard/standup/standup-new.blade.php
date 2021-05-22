@@ -14,7 +14,7 @@
             <x-nav-link :href="route('standup')" :active="false" class="border-none mr-4">
                 Alle
             </x-nav-link>
-            <x-nav-link :href="route('standup')" :active="false" class="border-none mr-4">
+            <x-nav-link :href="route('standup-setting.index')"  :active="false" class="border-none mr-4">
                 Innstillinger
             </x-nav-link>
         </div>

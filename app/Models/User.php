@@ -61,6 +61,11 @@ class User extends Authenticatable
         return $this->hasMany(Standup::class);
     }
 
+    public function standupSetting()
+    {
+        return $this->hasOne(StandupSetting::class);
+    }
+
     public function words()
     {
         return $this->hasMany(Word::class);
