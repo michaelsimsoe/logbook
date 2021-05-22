@@ -104,6 +104,8 @@ class LinkController extends Controller
 
         // TODO: remove duplicates
         $providedTags = explode(',', $request->input('tags'));
+        $providedTags = array_map(fn ($tag) => trim($tag), $providedTags);
+        $providedTags = array_unique($providedTags);
 
         $link->tags()->detach();
         foreach ($providedTags as $tag) {
