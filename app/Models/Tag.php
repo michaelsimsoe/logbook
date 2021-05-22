@@ -21,6 +21,11 @@ class Tag extends Model
         return $this->morphedByMany(Link::class);
     }
 
+    public function words()
+    {
+        return $this->morphedByMany(Word::class);
+    }
+
     public function fromUser()
     {
         return auth()->user();

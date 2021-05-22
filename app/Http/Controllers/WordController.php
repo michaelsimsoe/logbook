@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Word;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class WordController extends Controller
@@ -41,7 +42,22 @@ class WordController extends Controller
             'meaning' => 'required',
             'description' => 'nullable',
             ]);
-        auth()->user()->words()->create($attributes);
+        
+        $word = auth()->user()->words()->create($attributes);
+
+        $providedTags = explode(',', $request->input('tags'));
+        $providedTags = array_map(fn ($tag) => trim($tag), $providedTags);
+        $providedTags = array_unique($providedTags);
+        
+        foreach ($providedTags as $tag) {
+            $t = Tag::where('name', trim($tag))->first();
+            if (!$t) {
+                $newTag = Tag::create(['name' => trim($tag)]);
+                $word->tags()->attach($newTag);
+            } else {
+                $word->tags()->attach($t);
+            };
+        }
 
         return redirect()->route('words.index');
     }
@@ -65,7 +81,13 @@ class WordController extends Controller
      */
     public function edit(Word $word)
     {
-        return view('words.words-edit', compact('word'));
+        $tags = $word->tags->map(function ($item, $key) {
+            return $item->name;
+        })->toArray();
+        
+        $tagString = implode(', ', $tags);
+
+        return view('words.words-edit', compact('word', 'tagString'));
     }
 
     /**
@@ -84,6 +106,21 @@ class WordController extends Controller
             ]);
 
         $word->update($attributes);
+
+        $providedTags = explode(',', $request->input('tags'));
+        $providedTags = array_map(fn ($tag) => trim($tag), $providedTags);
+        $providedTags = array_unique($providedTags);
+        
+        $word->tags()->detach();
+        foreach ($providedTags as $tag) {
+            $t = Tag::where('name', trim($tag))->first();
+            if (!$t) {
+                $newTag = Tag::create(['name' => trim($tag)]);
+                $word->tags()->attach($newTag);
+            } else {
+                $word->tags()->attach($t);
+            };
+        }
 
 
         return redirect()->route('words.show', compact('word'));

@@ -27,6 +27,10 @@
                             <label for="description">Beskrivelse</label>
                             <textarea name="description" id="" cols="30" rows="5" class="rounded shadow"></textarea>
                         </div>
+                        <div class="flex flex-col mb-3">
+                            <label for="tags" class="mr-2">Tags:</label>
+                            <input type="text" name="tags" id="tags" class="rounded">
+                        </div>
                         <button type="submit" class="border bg-gray-400 rounded p-2">Legg til ord</button>
                     </form>
                     <h3 class="text-lg mb-2 mt-4">Alle ord</h3>

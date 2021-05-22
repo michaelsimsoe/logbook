@@ -44,6 +44,9 @@ class LinkController extends Controller
         $link = auth()->user()->links()->create($attributes);
 
         $providedTags = explode(',', $request->input('tags'));
+        $providedTags = array_map(fn ($tag) => trim($tag), $providedTags);
+        $providedTags = array_unique($providedTags);
+        
         foreach ($providedTags as $tag) {
             $t = Tag::where('name', trim($tag))->first();
             if (!$t) {
@@ -102,7 +105,6 @@ class LinkController extends Controller
 
         $link->update($attributes);
 
-        // TODO: remove duplicates
         $providedTags = explode(',', $request->input('tags'));
         $providedTags = array_map(fn ($tag) => trim($tag), $providedTags);
         $providedTags = array_unique($providedTags);

@@ -28,7 +28,7 @@
                             <input type="text" name="description" id="" class="rounded shadow">
                         </div>
                         <div class="flex flex-col mb-3">
-                            <label for="tags" class="self-center mr-2">Tags:</label>
+                            <label for="tags" class="mr-2">Tags:</label>
                             <input type="text" name="tags" id="tags" class="rounded">
                         </div>
                         <button type="submit" class="border bg-gray-400 rounded p-2">Legg til link</button>
