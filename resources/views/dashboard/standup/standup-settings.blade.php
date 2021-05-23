@@ -24,7 +24,7 @@
     
         <div class="p-6 bg-white border-b border-gray-200 w-full">
             <h3 class="text-lg">Standupinnstillinger</h3>
-            <form action="{{ $settings ? route('standup-setting.update', [$settings['id']] ) : route('standup-setting.store') }}" method="POST">
+            <form action="{{ $settings ? route('standup-setting.update', [$settings['id ']] ) : route('standup-setting.store') }}" method="POST">
                 @csrf
                 @if($settings)
                     {{ method_field('PATCH') }} 
